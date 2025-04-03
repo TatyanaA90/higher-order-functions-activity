@@ -24,16 +24,6 @@ def my_max(collection, key):
 
     #return max(collection, key=lambda item: item[key] if isinstance(item, dict) else key(item))
 
-    # def min_function_custom(collection, get_value_from_item):
-    #  min_item = collection[0]
-    #  min_value = get_value_from_item(collection[0])
-    #  for item in collection:
-    #      if get_value_from_item(item) < min_value:
-    #          min_item = item
-    #          min_value = get_value_from_item(item)
-    #  return min_item
-    
-
 # Implement a custom version of filter, called my_filter
 # my_filter takes a function (should_keep) which it will call on every item in
 # the supplied collection. If should_keep returns a truthy value for an item,
@@ -43,7 +33,22 @@ def my_max(collection, key):
 def my_filter(should_keep, collection):
     # if you've encountered list comprehensions, this would be a
     # great place to use one
-    pass
+    
+    # one line implementation
+    if not should_keep:
+        return None
+    return [item for item in collection if should_keep(item)]
+
+    # 2nd implementation
+    #if not should_keep:
+    #    return None
+    #
+    #filtered_items = []
+    #for item in collection:
+    #    if should_keep(item):
+    #        filtered_items.append(item) 
+    #return filtered_items           
+
 
 # Implement a custom version of map, called my_map
 # my_map takes a function (transform) which it will call on every item in the
@@ -54,7 +59,21 @@ def my_filter(should_keep, collection):
 def my_map(transform, collection):
     # if you've encountered list comprehensions, this would be a
     # great place to use one
-    pass
+
+    # 1st implementation
+    #if not transform:
+    #    return None
+    #return (transform(item) for item in collection)
+
+    # 2nd implementatiom
+    if not transform:
+        return None
+    
+    transformed_list_items = []
+    for item in collection:
+        transformed_list_items.append(transform(item))
+
+    return transformed_list_items.sort()
 
 #################################################
 # NO CODE BELOW THIS POINT NEEDS TO BE MODIFIED #
@@ -103,11 +122,11 @@ def get_short_words(words):
 # a helper method used to test out the behavior of my_map
 def get_word_lengths(words):
     # transform each word into its length
-    lengths = my_map(lambda word: len(word), words)
+    #lengths = my_map(lambda word: len(word), words)
 
     # but in python, we are more likely to do something like
     # this, using list comprehension syntax
-    # lengths = [len(word) for word in words]
+    lengths = [len(word) for word in words]
     
     return lengths
 
