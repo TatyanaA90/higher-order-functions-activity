@@ -11,7 +11,28 @@ WORDS = ["jumps", "laziest", "brown", "a", "quick", "fox", "the", "dog", "over"]
 # parameter on it. This will be very similar to the min_function_custom
 # developed in the Learn reading.
 def my_max(collection, key):
-    pass
+
+    if not collection:
+        raise ValueError("max() is empty")
+    max_item = collection[0]
+    max_value = key(collection[0])
+    for item in collection:
+        if key(item) > max_value:
+            max_item = item
+            max_value = key(item)
+    return max_item
+
+    #return max(collection, key=lambda item: item[key] if isinstance(item, dict) else key(item))
+
+    # def min_function_custom(collection, get_value_from_item):
+    #  min_item = collection[0]
+    #  min_value = get_value_from_item(collection[0])
+    #  for item in collection:
+    #      if get_value_from_item(item) < min_value:
+    #          min_item = item
+    #          min_value = get_value_from_item(item)
+    #  return min_item
+    
 
 # Implement a custom version of filter, called my_filter
 # my_filter takes a function (should_keep) which it will call on every item in
