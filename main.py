@@ -24,6 +24,15 @@ def my_max(collection, key):
 
     #return max(collection, key=lambda item: item[key] if isinstance(item, dict) else key(item))
 
+    # 3d version
+    #max = None
+#
+    #for item in collection:
+    #    if not max or key(item) > key(max):
+    #        max = item
+#
+    #return max
+
 # Implement a custom version of filter, called my_filter
 # my_filter takes a function (should_keep) which it will call on every item in
 # the supplied collection. If should_keep returns a truthy value for an item,
@@ -37,7 +46,9 @@ def my_filter(should_keep, collection):
     # one line implementation
     if not should_keep:
         return None
-    return [item for item in collection if should_keep(item)]
+    
+    new_list = [item for item in collection if should_keep(item)]
+    return new_list
 
     # 2nd implementation
     #if not should_keep:
@@ -63,7 +74,9 @@ def my_map(transform, collection):
     # 1st implementation
     #if not transform:
     #    return None
-    #return (transform(item) for item in collection)
+
+    #transformed_list_items = [transform(item) for item in collection]
+    #return transformed_list_items
 
     # 2nd implementatiom
     if not transform:
